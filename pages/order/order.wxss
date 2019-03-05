@@ -1,0 +1,88 @@
+/* pages/order/order.wxss */
+.container{
+  background: #ECECEC;
+}
+scroll-view{
+  height: 1200rpx;
+}
+.orderList{
+  /* width: 100%; */
+  padding: 15rpx;
+  background: #fff;
+  margin-top: 20rpx;
+  border: 1rpx solid rgb(236, 236, 236);
+  border-radius: 20rpx;
+}
+.shop-img{
+  width: 70rpx;
+  height: 70rpx;
+}
+.order-title{
+  width: 100%;
+  height: 120rpx;
+  border-bottom: 1rpx solid #ECECEC;
+  display: flex;
+}
+.center{
+  padding-left: 20rpx;
+}
+.center .shop-name{
+  font-size: 35rpx;
+}
+.center .order-time{
+  display: flex;
+  font-size: 30rpx;
+  color: #808080;
+  margin-top: 10rpx;
+}
+.order-time .time{
+  margin-left: 10rpx;
+}
+.right{
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: rgb(100, 100, 100);
+  width: 320rpx;
+  text-align: right;
+}
+.list{
+  color: rgb(90, 90, 90);
+  padding: 30rpx 30rpx 30rpx 85rpx; 
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #ECECEC;
+}
+.list .content{
+   display: flex; 
+   justify-content: space-between;
+   margin-right: 20rpx;
+}
+.list .total{
+  text-align: right;
+  font-size: 25rpx;
+  margin-top: 10rpx;
+}
+.order-footer{
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 28rpx;
+}
+.order-footer-goToComment,.order-footer-orderAgain{
+  margin-top: 15rpx;
+  margin-right: 40rpx; 
+  height: 70rpx;
+  line-height: 70rpx;
+  width: 200rpx;
+  text-align: center;
+  border: 1rpx solid #ECECEC;
+}
+.order-footer-orderAgain{
+  margin-right: 20rpx;
+}
+.order-footer-goToComment{
+  background: #FFD161;
+}
+.blank{
+  height: 120rpx;
+}

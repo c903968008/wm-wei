@@ -1,0 +1,22 @@
+.container{
+  text-align: center;
+  padding-top: 40%;
+}
+.img{
+   height: 250rpx;
+   margin-bottom: 20rpx; 
+}
+image{
+  height: 250rpx;
+}
+text{
+  font-size: 30rpx;
+  color: #8a8a8a;
+}
+button{
+  margin-top: 30rpx;
+  background: #1E90FF;
+  width: 300rpx;
+  font-size: 30rpx;
+  color: white;
+}

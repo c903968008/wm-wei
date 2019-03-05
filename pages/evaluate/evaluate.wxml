@@ -1,0 +1,58 @@
+<view class="content">
+<view class='header'>
+  <view class='shop-img'>
+    <image src='{{shopImg}}' mode='aspectFit'></image>
+  </view>
+  <view class='shop-name'>{{shopName}}</view>
+</view>
+<view class='center'>
+  <view class="textarea-wrp">
+    <textarea class='textarea' auto-focus="true" placeholder="亲，对服务满意吗？"/>
+  </view>
+  <view style='background-color:#ffffff;margin-left:2%;margin-right:2%;margin-top:3%;border-top:1rpx dashed rgb(217,217,217);height:250rpx;border-bottom: 1rpx dashed rgb(217,217,217);'>
+    <view style='margin-top:3%;'> 
+      <view style='float:left;'>
+        <button size='mini' style='height:200rpx;width:200rpx;text-align:center;line-height:190rpx;broder-radius:20rpx;'><text style='font-size:30rpx;color:rgb(127,127,127);'>上传图片</text></button>
+      </view> 
+      <view style='float:left;margin-left:30rpx'>
+        <view style='margin-top:40rpx'>
+          <text style='font-size:40rpx'>上传图片</text>
+        </view>
+        <view style='margin-top:20rpx'>
+          <text style='font-size:30rpx;color:#C0C0C0'>上传图片与大家分享喜悦</text>
+        </view>
+      </view>
+    </view>
+  </view> 
+  <!-- <view class='order'>
+    <block wx:for="{{order}}">
+    <view class='for'>
+      <text>{{item.name}}</text>
+        <view class='radio'>
+          <radio-group bindchange="radioCheckedChange"> 
+            <view class="flex_box"> 
+              <view class="flex_item"> 
+                <label class="{{radioCheckVal==0?'active':''}}">
+                    赞
+                  <radio value="0"  hidden="true"></radio> 
+                </label> 
+              </view> 
+              <view style='width:50rpx'></view>
+              <view class="flex_item"> 
+                <label class="{{radioCheckVal==1?'active':''}}"> 
+                  踩
+                  <radio value="1" hidden="true"></radio> 
+                </label> 
+              </view>
+            </view> 
+          </radio-group> 
+        </view>
+    </view>
+     
+    </block>
+  </view> -->
+</view>
+<view class='footer'>
+<button class='submit' form-type='submit'>提交</button>
+</view>
+</view>

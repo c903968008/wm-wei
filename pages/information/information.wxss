@@ -1,0 +1,53 @@
+page{
+  font-size: 30rpx;
+  background: #ECECEC;
+}
+.content{
+  margin-top: 20rpx;
+}
+.content .con{
+  display: flex;  
+  line-height: 90rpx;
+  height: 90rpx;
+  background: white;
+  padding-left: 25rpx;
+  border-bottom: 1rpx solid #ECECEC;
+}
+.content .con .right{
+  display: flex;
+  color: #A9A9A9;
+}
+.content .con .right .title{
+  line-height: 90rpx;
+  height: 90rpx;
+}
+.content .con .right .more image{
+  height: 40rpx;
+  width: 30rpx;
+  padding-left: 10rpx;
+  padding-top:25rpx; 
+}
+.content .head{
+  line-height: 120rpx;
+  height: 120rpx;
+}
+.content .head .head-right{
+  padding-left: 480rpx;
+}
+.content .con .right .head-me image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius:100rpx;
+}
+.content .con .right .head-more image{
+  padding-top:40rpx; 
+}
+.content .name .name-right{
+  padding-left: 180rpx;
+}
+.content .name .name-right{
+  padding-left: 510rpx;
+}
+.content .password .password-right{
+  padding-left: 440rpx;
+}  

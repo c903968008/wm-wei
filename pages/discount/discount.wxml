@@ -1,0 +1,28 @@
+<view clss="container">
+  <scroll-view scroll-y="true">
+     <block wx:for="{{discount}}">  
+      <view class='content'>
+        <view class='img'>
+          <image src='{{item.img}}'></image>
+        </view>
+        <view class='center'>
+          <view class='name'>{{item.name}}</view>
+          <view class='atime'>有效期至：</view>
+          <view class='time'>{{item.time}}</view>
+        </view>
+        <view class='money'>
+          <view class='ai'>
+            <view class='sign'>￥</view>
+            <view class='num'>{{item.num}}</view>
+          </view>
+          <view class='total'>满{{item.total}}元可用</view>
+        </view>
+        <view class='btn' bindtap='toMenu'>
+          <view class='qu'>去</view>
+          <view class='shi'>使</view>
+          <view class='yong'>用</view>
+        </view>
+      </view>
+     </block>  
+  </scroll-view>
+</view>

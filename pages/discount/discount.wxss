@@ -1,0 +1,66 @@
+.content{
+  height: 100%;
+  border: 1rpx solid #ACACAC;
+  border-radius: 10rpx;
+  margin:20rpx;
+  padding: 20rpx 0 20rpx 20rpx;
+  display: flex;
+  background: #fff;
+}
+.img{
+  width: 150rpx;
+  height: 150rpx;
+}
+.img image{
+  width: 150rpx;
+  height: 150rpx;
+}
+.center{
+  padding-left: 20rpx;
+}
+.center .name{
+  margin-top: 20rpx;
+  font-size: 40rpx;
+}
+.center .atime{
+  color: #808080;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}
+.center .time{
+  color: #808080;
+  font-size: 30rpx;
+}
+.money{
+  margin-left: 100rpx;
+}
+.ai{
+  display: flex;
+}
+.sign{
+  font-size: 30rpx;
+  margin-top: 50rpx;
+  color: red;
+}
+.num{
+  font-size: 80rpx;
+  color: red;
+}
+.total{
+  color: #808080;
+  font-size: 30rpx;
+}
+.btn{
+  color: red;
+  border-left: 1rpx solid #DCDCDC;
+  margin-left: 20rpx; 
+}
+.qu{
+  padding-left: 15rpx;
+}
+.shi{
+  padding-left: 15rpx;
+}
+.yong{
+  padding-left: 15rpx;
+} 

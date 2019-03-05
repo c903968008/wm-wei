@@ -1,0 +1,30 @@
+<view class="content">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="../../images/logo.png" background-size="cover" mode='aspectFit'></image>
+  </view>
+    <form bindsubmit="formSubmit">
+        <view class="input-area">
+        <view class="input-log">  
+          <image class="userinfo-logIcon" src="{{logIcon}}"></image>  
+          <input id="telephone" name="telephone" maxlength='11' type="text" placeholder="手机号" />
+        </view>  
+          <view class="smsCode">
+            <image class="userinfo-verifiIcon" src="{{verifiIcon}}"></image>
+            <input id="smsCode" name="smsCode" maxlength='6' type="text" placeholder="验证码" />
+            <button bindtap = "getSmsCode" disabled="{{smsCodeDisabled}}" style="background-color:{{getSmsCodeBtnColor}}"   class="getSmsCodeBtn">{{getSmsCodeBtnTxt}}</button>
+          </view>
+
+          <view class="input-log">  
+            <image class="userinfo-logIcon" src="{{pwdIcon}}"></image>  
+            <input id="password" name="password" maxlength='20' type="password" placeholder="密码" />
+          </view>
+        </view>
+        <view class="btn-area">
+            <button  disabled="{{registDisabled}}" style="background-color:{{registBtnBgBgColor}}"   formType="submit"  loading="{{btnLoading}}"> {{registBtnTxt}} </button>
+            <view class="txt-area">
+                 <navigator redirect url="../forgetpwd/forgetpwd"><text class="forgot-password">忘记密码？</text></navigator>
+                 <navigator redirect url="../login/login"><text class="register">登录账号</text></navigator>
+            </view>
+        </view>
+    </form>
+</view>

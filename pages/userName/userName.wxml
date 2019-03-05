@@ -1,0 +1,5 @@
+<view class='container'>
+  <text class='txt'>用户名：</text>
+  <input class='input'></input>
+  <button class='btn'>确定</button>
+</view>

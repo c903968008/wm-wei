@@ -1,0 +1,63 @@
+<view class='container'>
+<scroll-view scroll-y class='scroll'>
+  <view class='top'>
+    <view class='address'>
+      <view class='address-info'>自取地址</view>
+      <view class='address-content'>{{address}}</view>
+    </view>
+    <view class='select'>
+      <view class='select-time'>
+        <view class='select-time-info word'>自取时间</view>
+        <view class='info'>
+          <view class='content'>{{time}}</view>
+          <view class='select-img'><image src='../../images/more.png' mode='aspectFit'></image></view>
+        </view>
+      </view>
+      <view class='select-tel'>
+        <view class='select-tel-info word'>自取电话</view>
+        <view class='info'>
+          <view class='content'>{{tel}}</view>
+          <view class='select-img'><image src='../../images/more.png' mode='aspectFit'></image></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='center'>
+    <view class='shop'>
+      <view class='shop-img'><image src='{{shopImg}}' mode='aspectFit'></image></view>
+      <view class='shop-name'>{{shopName}}</view>
+    </view>   
+    <view class='content'>
+      <view class='good' wx:for="{{good}}">
+        <view class='img'><image src='{{item.img}}' mode='aspectFit'></image></view>
+        <view class='name'>{{item.name}}</view>
+        <view class='money'>￥{{item.money}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class='info'>
+    <view class='pay flex'>
+      <view class='left'>支付方式</view>
+      <view class='right'>
+        <view class='way'>{{way}}</view>
+        <view class='img'><image src='../../images/more.png' mode='aspectFit'></image></view>
+      </view>
+    </view>
+    <view class='remark'>
+      <view class='rmk'>备注</view>
+      <view class="textarea-wrp">
+        <textarea class='textarea' placeholder="口味、偏好等要求"/>
+        
+      </view>
+      <button class='submit' size='mini'>提交</button>
+    </view>  
+  </view>
+  <view class='null'></view> 
+</scroll-view>
+</view>
+<view class='bottom'>
+  <view class='total'>合计￥{{total}}</view>
+  <view class='btn' bindtap='toOrder'>提交订单</view>
+</view>

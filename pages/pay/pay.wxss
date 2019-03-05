@@ -1,0 +1,161 @@
+.container{
+  padding: 20rpx;
+  background: #DCDCDC;
+  height: 100%;
+}
+.scroll{
+  height: 100%;
+}
+.top{
+  border: 1rpx solid #DCDCDC;
+  border-radius: 10rpx;
+  background: #fff;
+}
+.top .address{
+  margin: 0 20rpx;
+  text-align: center;
+  border-bottom: 1rpx dashed #DCDCDC;
+  padding-bottom: 40rpx;
+}
+.top .address .address-info{
+  font-size: 32rpx;
+  padding: 30rpx 0; 
+  color: #808080;
+}
+.top .address .address-content{
+  font-size: 42rpx;
+}
+.top .select{
+  display: flex;
+  margin: 20rpx;
+}
+.top .select .select-time{
+  width: 50%;
+  text-align: center;
+  border-right: 1rpx dashed #DCDCDC;
+}
+.top .select .select-time .info{
+  margin-left: 30%;
+}
+.top .select .select-tel{
+  width: 50%;
+  text-align: center;
+}
+.top .select .select-tel .info{
+  margin-left: 20rpx;
+}
+.top .select .info{
+  display: flex;
+  margin-top: 15rpx;
+}
+.top .select image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 8rpx;
+  margin-left: 5rpx;
+}
+.top .select .word{
+  color: #808080;
+  font-size: 34rpx;
+}
+
+.center{
+  margin-top: 20rpx;
+  background: #fff;
+  border: 1rpx solid #DCDCDC;
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+.center .shop{
+  display: flex;
+  border-bottom: 1rpx dashed #DCDCDC;
+}
+.center .shop-img image{
+  width: 90rpx;
+  height: 90rpx;
+}
+.center .shop-name{
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-left: 20rpx;
+  color: #808080;
+  font-size: 35rpx;
+}
+.center .good{
+  display: flex;
+  padding: 30rpx 20rpx 0 20rpx;
+}
+.center .good image{
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 20rpx;
+}
+.center .good .name{
+  margin-top: 35rpx;
+}
+.center .good .money{
+  margin-top: 35rpx;
+  position: relative;
+  left: 200rpx;
+}
+.info{
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background: #fff;
+  font-size: 30rpx;
+  border: 1rpx solid #DCDCDC;
+  border-radius: 10rpx;
+}
+.info .pay{
+  border-bottom: 1rpx dashed #DCDCDC;
+  padding-bottom: 10rpx;
+}
+.info image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 5rpx;
+}
+.flex{
+  display: flex;
+}
+.info .right{
+  display: flex;
+  margin-left: 380rpx; 
+}
+.remark{
+  margin-top: 10rpx;
+}
+.remark .textarea-wrp {
+  border: 1rpx solid #ACACAC;
+  padding: 0 25rpx;
+  border-radius: 10rpx;
+  height: 200rpx; 
+  margin: 2% 2% 2% 2%;
+}
+.remark .submit{
+  margin-left: 530rpx;
+}
+.null{
+  height: 120rpx;
+}
+.bottom{
+  width: 100%;
+  height: 100rpx;
+  color: #fff;
+  background: rgb(51, 51, 51);
+  position: absolute;
+  bottom: 0;
+  display: flex;
+}
+.bottom .total{
+  width: 70%;
+  /* border-right: 1rpx solid #fff; */
+  text-align: center;
+  line-height: 100rpx;
+}
+.bottom .btn{
+  width: 30%;
+  text-align: center;
+  line-height: 100rpx;
+  background: #1E90FF;
+}

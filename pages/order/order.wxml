@@ -1,0 +1,41 @@
+<!--pages/order/order.wxml-->
+<view class="container">
+<scroll-view  scroll-y="true">
+  <block wx:for="{{orderList}}" wx:key="" wx:for-item="orderList">
+    <view class="orderList">
+      <view class="order-title">
+        <image class='shop-img' src='{{orderList.img}}' mode='aspectFill'></image>
+        <view class='center'>
+          <view class='shop-name'>{{orderList.shopName}}</view>
+          <view class='order-time'>
+            <view class='date'>{{orderList.date}}</view>
+            <view class='time'>{{orderList.time}}</view>
+          </view>
+        </view>
+        <view class='right'>{{orderList.state}}</view>
+      </view>
+      <view class='list'>
+        <block wx:for="{{orderList.list}}" wx:key="" wx:for-item="list" wx:for-index="listId">
+          <view class='content'>
+            <view class='name'>{{list.name}}</view>
+            <view class='name'>×{{list.num}}</view>
+          </view>
+        </block>
+        <view class='total'>
+          <text>共{{orderList.goodsCount}}件商品，实付￥{{orderList.totalPrice}}</text>
+        </view>
+      </view>
+      <view class="order-footer">
+        <navigator url='../menu/menu'>
+          <view class="order-footer-orderAgain">再来一单</view>
+        </navigator>
+        <navigator url='../evaluate/evaluate'>
+          <view class="order-footer-goToComment">去评论</view>
+        </navigator>
+      </view> 
+    </view>
+  </block>  
+  <view class='blank'></view>
+</scroll-view>
+</view>
+

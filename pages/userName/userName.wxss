@@ -1,0 +1,16 @@
+.container{
+  margin: 10rpx;
+}
+.txt{
+  font-size: 35rpx;
+  color: #808080;
+}
+.input{
+  border-bottom: 5rpx solid #1E90FF; 
+  margin: 20rpx 10rpx;
+}
+.btn{
+  margin: 20rpx 10rpx;
+  background: #1E90FF;
+  color: #fff;
+}

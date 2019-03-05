@@ -1,0 +1,89 @@
+.content{
+  background: #F5F5F5;
+  height: 100%;
+}
+.header{
+  margin: 0 20rpx 0 20rpx;
+  padding: 20rpx;
+  display: flex; 
+  line-height: 120rpx;
+  width: 670rpx;
+  height: 120rpx;
+  background: #fff;
+  border-bottom: 1rpx dashed rgb(217,217,217);
+}
+.header .shop-img{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius:120rpx; 
+}
+.header .shop-img image{
+  width: 120rpx;
+  height: 120rpx; 
+  border-radius:120rpx; 
+}
+
+.header .shop-name{
+  font-size: 35rpx;
+  padding-left: 20rpx;
+}
+.center{
+  background-color: #fff;
+  margin: 0 20rpx;
+  padding: 20rpx 0;
+}
+.center .textarea-wrp {
+  border: 1rpx solid #ACACAC;
+  padding: 0 25rpx;
+  border-radius: 10rpx;
+  height: 200rpx; 
+  margin: 2% 2% 2% 2%;
+}
+.center .textarea-wrp .textarea{
+  border-radius: 10rpx;
+}
+.center .order{
+  font-size: 30rpx;
+  padding-top:20rpx; 
+  height: 100%;
+  margin-left:2%;
+}
+.center .for{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10rpx;
+}
+.center .order label{
+  font-size: 25rpx;
+  color: #808080;
+}
+.center .order .radio{
+  position: absolute;
+  right: 50rpx; 
+}
+.flex_box{ 
+ display: flex; 
+ width: 150rpx;
+} 
+.flex_item{ 
+ flex: 1; 
+ text-align: center; 
+ width: 100rpx;
+ 
+} 
+.flex_item label{ 
+ padding: 0 20rpx;  
+ width: 70%; 
+ border: 1rpx solid #ACACAC;
+ border-radius: 20rpx;
+} 
+.flex_item label.active{ 
+ color: #1E90FF; 
+ border: 1rpx solid #1E90FF;
+} 
+.footer .submit{
+  margin-top: 50rpx; 
+  background: #1E90FF;
+  color: white;
+  width: 700rpx;
+}

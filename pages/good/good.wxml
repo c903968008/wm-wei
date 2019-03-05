@@ -1,0 +1,14 @@
+<view class='container'>
+  <view class='img'>
+    <image src='{{img}}'></image>
+  </view>
+  <view class='infomation'>
+    <view class='name'>{{name}}</view>
+    <view class='sales'>{{sales}}</view>
+    <view class='money'>{{money}}</view>
+  </view>
+  <view class='other'>
+    <view class='info'>商品信息</view>
+    <view class='content'>{{content}}</view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+<view class='container'>
+  <view class='img'>
+    <image src='../../images/unlogin.png' mode='aspectFit'></image>
+  </view>
+  <text>您还没有登录，请登录后查看订单</text>
+  <button class='btn' bindtap='toLogin'>登录/注册</button>
+</view>
