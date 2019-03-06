@@ -1,9 +1,6 @@
-// pages/home/home.js
-Page({
+const app = getApp();
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
     characteristicList:[{
       text: "免配送费"
@@ -88,37 +85,6 @@ Page({
         src: "../../images/8.png"
       }]
     },
-  restaurant:[{
-    src:"../../images/logo1.png",
-    name:"奶茶博士",
-    points: 4.8,
-    sales: 375,
-    distance:769
-  },{
-      src: "../../images/logo2.png",
-      name: "最高鸡密",
-      points: 4.4,
-      sales: 472,
-      distance: 3300 
-    }, {
-      src: "../../images/logo3.png",
-      name: "快乐芋站",
-      points: 4.2,
-      sales: 815,
-      distance: 4500 
-  }, {
-    src: "../../images/logo4.png",
-    name: "御粥轩",
-    points: 4.9,
-    sales: 1299,
-    distance: 769 
-    }, {
-      src: "../../images/test1.png",
-      name: "一盒糖果",
-      points: 4.3,
-      sales: 50,
-      distance: 4910 
-    }],
     selected: 0,
     mask1Hidden: true,
     mask2Hidden: true,
@@ -213,7 +179,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var userInfo = wx.getStorageSync('userInfo')
+    console.log('userInfo：',userInfo)
+    app.globalData.userInfo = userInfo;
+    console.log('app.globalData.userInfo', app.globalData.userInfo);
+    if(userInfo == ''){
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
+
+    var that = this;
+    wx.request({
+      url: `${app.globalData.baseUrl}/api/getAllShop`,
+      method: "GET",
+      success: function (res) {
+        console.log('所有商铺信息：',res.data)
+        that.setData({
+          restaurant: res.data.result,
+        })
+      }
+    });
   },
 
   /**
@@ -227,17 +213,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that = this;
-    wx.request({
-      url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/info",
-      method: "GET",
-      success: function (res) {
-        that.setData({
-          restaurant: res.data.data.restaurant,
-          location: wx.getStorageSync('location')
-        })
-      }
-    });
+    // var that = this;
+    // wx.request({
+    //   url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/info",
+    //   method: "GET",
+    //   success: function (res) {
+    //     that.setData({
+    //       restaurant: res.data.data.restaurant,
+    //       location: wx.getStorageSync('location')
+    //     })
+    //   }
+    // });
   },
 
   /**

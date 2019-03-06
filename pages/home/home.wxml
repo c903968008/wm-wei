@@ -74,10 +74,10 @@ style="height:100%">
   <template is="sort_list" data="{{selected,sortSelected}}"/> 
     <view class="restaurantsList">
       <block wx:for="{{restaurant}}" wx:key="">
-        <navigator url="/pages/menu/menu">
+        <navigator url="/pages/menu/menu?id={{item.id}}">
           <view class="restaurants-list">
             <view class="restaurants-info-image">
-            <image src="{{item.src}}" mode='aspectFit' class="restaurants-image"/>
+            <image src="{{item.logo}}" mode='aspectFit' class="restaurants-image"/>
             </view>
             <view class="restaurants-info">
               <view class="restaurants-info-name">
@@ -85,16 +85,16 @@ style="height:100%">
               </view>
               <view class="restaurants-info-rating">
                 <view class="restaurants-info-rating-stars">
-                评分：{{item.points}}
+                评分：{{item.grade}}
                 </view>
                 <view class="restaurants-info-rating-sales">
-                月售 {{item.sales}}单
+                月售 {{item.sale}}单
                 </view>
               </view>
             </view>
             <view class="restaurants-distribution">
               <view class="restaurants-distribution-distance">
-              距离：{{item.distance}}m
+              <!-- 距离：{{item.distance}}m -->
               </view>
             </view>
           </view>

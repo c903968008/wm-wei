@@ -49,7 +49,13 @@ Page({
       data: param,
       method: 'POST',
       success(res) {
-        console.log(res)
+        console.log('登录成功',res)
+        app.globalData.userInfo = res.data.result;
+        console.log('app.globalData.userInfo:', app.globalData.userInfo)
+        wx.setStorage({
+          key: 'userInfo',
+          data: res.data.result
+        })
         if(res.data.status == 1){
           wx.switchTab({
             url: '../home/home',

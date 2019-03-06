@@ -3,12 +3,12 @@
   <view class='shop'>
     <view class='shop-img'>
       <!-- <image mode="aspectFit" src='{{shopImg}}'></image> -->
-      <image src='{{shopImg}}'></image>
+      <image src='{{shop.logo}}'></image>
     </view>
     <view class='shop-content'>
       <view class='shop-info'>
-        <text class='shop-info-name'>{{shopName}}</text>
-        <text class='shop-info-notice'>评分：{{shopPoints}}</text>
+        <text class='shop-info-name'>{{shop.name}}</text>
+        <text class='shop-info-notice'>评分：{{shop.grade}}</text>
       </view>
       <view class='collection'>
         <image src='{{isCollect}}' catchtap='collect'></image>

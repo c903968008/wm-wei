@@ -1,4 +1,5 @@
 // pages/menu/menu.js
+const app = getApp();
 Page({
 
   /**
@@ -106,9 +107,7 @@ Page({
     orderCount: 0,//添加到购物车的商品数量
     trolleyHidden: true, //是否显示购物车
     trolleyTap: 0,
-    shopImg:"../../images/shop1.png",
-    shopName:"奶茶博士",
-    shopPoints:"4.8",
+    
     isCollect: "../../images/collection.png",
     collectCount: 0,
     commentChangeAll:false, //切换全部
@@ -176,33 +175,39 @@ Page({
       goTop_show: false
     }  
   },
+
   toPay: function(){
     wx.navigateTo({
       url: '../pay/pay',
     })
   },
+
   // toGood:function(){
   //   wx.navigateTo({
   //     url: '../good/good',
   //   })
   // },
+
   btnAll:function(){
     this.setData({
       commentChangeAll: false,
       commentChangeOn: true,
     })
   },
+
   btnOn: function () {
     this.setData({
       commentChangeAll: true,
       commentChangeOn: false,
     })
   },
+
   pullBar: function () {
     this.setData({
       pullBar: !this.data.pullBar
     })
   },
+
   addGoods(event) {
     var index = event.currentTarget.dataset.index;
     this.data.goods.splice(this.data.goods.length, 0, this.data.order[index]);
@@ -214,6 +219,7 @@ Page({
       orderCount: this.data.orderCount
     })
   },
+
   addToTrolley: function (e) {
     var info = this.data.menu;
     info[this.data.selected].menuContent[e.currentTarget.dataset.index].numb++;
@@ -227,6 +233,7 @@ Page({
       orderCount: this.data.orderCount
     })
   },
+
   removeFromTrolley: function (e) {
     var info = this.data.menu;
     if (info[this.data.selected].menuContent[e.currentTarget.dataset.index].numb != 0) {
@@ -239,6 +246,7 @@ Page({
       })
     }
   },
+
   appearTrolley: function (e) {
     var tap = this.data.trolleyTap;
     tap ++;
@@ -259,11 +267,13 @@ Page({
     }
     
   },
+
   turnPage: function (e) {
     this.setData({
       currentPage: e.currentTarget.dataset.index
     })
   },
+
   turnTitle: function (e) {
     if (e.detail.source == "touch") {
       this.setData({
@@ -271,11 +281,13 @@ Page({
       })
     }
   },
+
   turnMenu: function (e) {
     this.setData({
       selected: e.currentTarget.dataset.index
     })
   },
+
   navbarTap: function (e) {
     var that = this;
     console.log(e);
@@ -295,55 +307,94 @@ Page({
         console.log(that.data.childrenArray);
       }, function (error) { console.log("返回失败"); });
   },
+
+  //收藏按钮
   collect: function (e){
+    var that = this;
     this.data.collectCount++;
+    let param = {
+      user_id: app.globalData.userInfo[0].id,
+      shop_id: that.data.shopId
+    }
     if(this.data.collectCount%2==0){
       this.setData({
         isCollect: "../../images/collection.png"
       })
+      console.log('点击后不收藏 collectCount:', this.data.collectCount)
+      wx.request({
+        url: `${app.globalData.baseUrl}/api/ncollect`,
+        data: param,
+        method: "POST",
+        success: function (res) {
+          console.log('不收藏：', res.data);
+        }
+      });
     } else{
       this.setData({
         isCollect: "../../images/collection1.png"
       })
+      console.log('点击后收藏 collectCount:', this.data.collectCount)
+      
+      wx.request({
+        url: `${app.globalData.baseUrl}/api/collect`,
+        data: param,
+        method: "POST",
+        success: function (res) {
+          console.log('收藏：', res.data);
+        }
+      });
+
     }
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+
     var h = wx.getSystemInfoSync().windowHeight;
     this.setData({
-      clientHeight: h*0.4
+      clientHeight: h * 0.4,
+      shopId: options.id
     })  
+    // console.log('onLoad collectCount:',this.data.collectCount)
+    // console.log('options:',options);
+    //获取商铺信息
     wx.request({
-      url: "",
-      method: "GET",
+      url: `${app.globalData.baseUrl}/api/getShopById`,
+      data: options,
+      method: "POST",
       success: function (res) {
+        console.log('商铺信息：',res.data);
         that.setData({
-          menu: res.data,
+          shop: res.data.result,
         })
       }
     });
-    request.sendRrquest(API_queryClassify, 'POST', { flag: 0 }, )
-      .then(function (res) {
-        console.log("返回数据：");
-        var screenArray = res.data.data.screenArray;
-        var screenId = screenArray[0].screenId;
-        that.setData({
-          screenArray: screenArray,
-          screenId: screenId,
-        })
-        console.log(screenArray);
-        request.sendRrquest(API_queryClassify, 'POST', { flag: 1, screenId: screenId }, )
-          .then(function (res) {
-            console.log("返回数据：");
-            that.setData({
-              childrenArray: res.data.data.screenArray[0],
-            })
-            console.log(that.data.childrenArray);
-          }, function (error) { console.log("返回失败"); });
-      }, function (error) { console.log("返回失败"); });
+
+    let param = {
+      user_id: app.globalData.userInfo[0].id,
+      shop_id: options.id
+    }
+    console.log('param:',param)
+    //判断是否收藏
+    wx.request({
+      url: `${app.globalData.baseUrl}/api/isCollect`,
+      data: param,
+      method: "POST",
+      success: function (res) {
+        console.log('是否收藏：', res.data);
+        
+        if (res.data.status == 1){
+          that.setData({
+            isCollect: "../../images/collection1.png",
+            collectCount: 1
+          })
+        } 
+      }
+    });
+   
   },
   
 
