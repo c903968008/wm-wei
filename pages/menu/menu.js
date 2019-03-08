@@ -373,12 +373,12 @@ Page({
       }
     });
 
+    //判断是否收藏
     let param = {
       user_id: app.globalData.userInfo[0].id,
       shop_id: options.id
     }
-    console.log('param:',param)
-    //判断是否收藏
+    // console.log('param:',param)
     wx.request({
       url: `${app.globalData.baseUrl}/api/isCollect`,
       data: param,
@@ -394,6 +394,28 @@ Page({
         } 
       }
     });
+
+    //获取商品
+    wx.request({
+      url: `${app.globalData.baseUrl}/api/getGood`,
+      data: {shop_id: options.id},
+      method: "POST",
+      success: function (res) {
+        console.log('商品信息：',res.data)
+        let typeName = [];
+        for(let good of res.data.result){
+          
+          typeName.push(good.type);
+          
+        }
+        for (let i = 0; i < typeName.length; i++) {
+          console.log(i, ':', typeName[i]);
+          if(typeName.indexOf(this[i]) == -1){
+            
+          }
+        }
+      }
+    })
    
   },
   
