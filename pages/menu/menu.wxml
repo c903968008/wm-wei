@@ -3,12 +3,12 @@
   <view class='shop'>
     <view class='shop-img'>
       <!-- <image mode="aspectFit" src='{{shopImg}}'></image> -->
-      <image src='{{shop.logo}}'></image>
+      <image src='{{shop[0].logo}}'></image>
     </view>
     <view class='shop-content'>
       <view class='shop-info'>
-        <text class='shop-info-name'>{{shop.name}}</text>
-        <text class='shop-info-notice'>评分：{{shop.grade}}</text>
+        <text class='shop-info-name'>{{shop[0].name}}</text>
+        <text class='shop-info-notice'>评分：{{shop[0].grade}}</text>
       </view>
       <view class='collection'>
         <image src='{{isCollect}}' catchtap='collect'></image>
@@ -44,10 +44,10 @@
       <view class="title">{{menu[selected].typeName}}</view>
       <block wx:for="{{menu[selected].menuContent}}" wx:key="">
         <view class="food">
-          <image class="img" src="{{item.src}}"></image>
+          <image class="img" src="{{item.logo}}"></image>
           <view class="food-info">
             <view class="name">{{item.name}}</view>
-            <view class="sales">月售 {{item.sales}} 赞 {{item.rating}}
+            <view class="sales">月售 {{item.sale}} 赞 {{item.praise}}
             </view>
             <view class="price">￥  {{item.price}}</view>
           </view>
@@ -112,26 +112,26 @@
     <view hidden='{{commentChangeAll}}'> 
       <view class='comment-tag'>
         <view class='comment-tag-all commentTag' bindtap='tagAll'>
-          全部{{commentNum[0]}}
+          全部 {{shop[0].eva}}
         </view>
         <view class='comment-tag-great commentTag' bindtap='tagGrate'>
-          好评{{commentNum[1]}}
+          好评 {{shop[0].goodEva}}
         </view>
         <view class='comment-tag-bad commentTag' bindtap='tagBad'>
-          差评{{commentNum[2]}}
+          差评 {{shop[0].badEva}}
         </view>
       </view>
       <view class='comment-content'>
         <block wx:for="{{commentAll}}" wx:key="comment">
           <view class='comment-content-top'>
             <view class='top-img'>
-               <image src='{{item.userImg}}'></image> 
+               <image src='{{item.user.avatar}}'></image> 
             </view>
             <view class='top-info'>
-              <view class='name'>{{item.userName}}</view>
-              <view class='points'>评分：{{item.points}}</view>
+              <view class='name'>{{item.user.name}}</view>
+              <view class='points'>评分：{{item.point}}</view>
             </view>
-            <view class='top-time'>{{item.time}}</view>
+            <view class='top-time'>{{item.updated_at}}</view>
           </view>
           <view class='comment-content-txt'>{{item.content}}</view>
         </block>
@@ -145,14 +145,14 @@
         <block wx:for="{{commentGrate}}" wx:key="commentGreate">
           <view class='comment-content-top'>
             <view class='top-img'>
-               <image src='{{item.userImg}}'></image> 
+               <image src='{{item.user.avatar}}'></image> 
             </view>
             <view class='top-info'>
-              <view class='name'>{{item.userName}}</view>
-              <view class='points'>评分：{{item.points}}</view>
+              <view class='name'>{{item.user.name}}</view>
+              <view class='points'>评分：{{item.point}}</view>
             </view>
             <view class='seal'>
-              <view class='top-time'>{{item.time}}</view>
+              <view class='top-time'>{{item.updated_at}}</view>
               <image src='../../images/greatCmt.png' mode='aspectFit'></image>
             </view>
             
@@ -170,38 +170,38 @@
 <!-- 商店 -->
   <swiper-item id="restaurantPage">
   <scroll-view class='restaurant-scroll' scroll-y="true">
-    <block wx:for="{{restaurant}}" wx:key="restaurant">
+    <!-- <block wx:for="{{restaurant}}" wx:key="restaurant"> -->
       <view class='restaurant-top'>
         <view class='restaurant-address'>
           <view><image src='../../images/address.png' mode='aspectFit'></image></view>
-          <view class='address'>{{item.address}}</view>
+          <view class='address'>{{shop[0].address}}</view>
         </view>
         <view class='restaurant-tel'>
            <view><image src='../../images/tel.png' mode='aspectFit'></image></view>
-          <view class='address'>{{item.tel}}</view>
+          <view class='address'>{{shop[0].telephone}}</view>
         </view>
       </view>
       <view class='restaurant-center'>
         <view class='restaurant-summary'>
           <view><image src='../../images/summary.png' mode='aspectFit'></image></view>
-          <view class='address'>{{item.summary}}</view>
+          <view class='address'>{{shop[0].remark}}</view>
         </view>
         <view class='restaurant-tag'>
            <view><image src='../../images/tag.png' mode='aspectFit'></image></view> 
-          <block wx:for="{{item.tag}}"  wx:key="restaurant-tag">
-            <view class='tag'>{{item}}</view>
+          <block wx:for="{{shop[1]}}"  wx:key="restaurant-tag">
+            <view class='tag'>{{item.name}}</view>
           </block>
         </view>
       </view>
       <view class='restaurant-bottom'>
-        <block wx:for="{{item.discount}}" wx:key="restaurant-discount">
+        <block wx:for="{{shop[0].discount}}" wx:key="restaurant-discount">
           <view class='restaurant-discount'>
             <view><image src='../../images/discount.png'></image></view>
             <view class='discount'>{{item}}</view>
           </view>
         </block>
       </view> 
-    </block>
+    <!-- </block> -->
     <view class='restaurant-blank'></view>
   </scroll-view>
   </swiper-item>

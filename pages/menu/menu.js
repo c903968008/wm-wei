@@ -17,86 +17,8 @@ Page({
         text: "商家",
       id: 3
     }],
-    order: [{
-      id: 1,
-      img: "../../images/good1.png",
-      name: "奶茶三兄弟",
-      content: "Q弹的珍珠，滑口的布丁组合",
-      money: 9
-    }, {
-      id: 2,
-      img: "../../images/good2.png",
-      name: "黄金珍珠奶茶",
-      content: "升级版台湾黄金珍珠",
-      money: 7
-      }, {
-        id: 3,
-        img: "../../images/good3.png",
-        name: "纯奶茶",
-        content: "台湾原味奶茶",
-        money: 6
-    }, {
-      id: 4,
-      img: "../../images/good4.png",
-      name: "超级柠檬养乐多",
-      content: "柠檬养乐多再升级",
-      money: 11
-    }],
-    menu: [{
-      typeName: "特色奶茶",
-      menuContent: [{
-        src: "../../images/good1.png",
-        name: "奶茶三兄弟",
-        sales: 10,
-        price: 9,
-        numb: 0
-      }, {
-        src: "../../images/good2.png",
-        name: "黄金珍珠奶茶",
-        sales: 10,
-        price: 7,
-        numb: 0
-      },  {
-        src: "../../images/good3.png",
-        name: "纯奶茶",
-        sales: 10,
-        price: 6,
-        numb: 0
-      }, {
-        src: "../../images/good4.png",
-        name: "超级柠檬养乐多",
-        sales: 10,
-        price: 11,
-        numb: 0
-      }]
-    }, {
-      typeName: "南极冰",
-      menuContent: [{
-        src: "../../images/good1.png",
-        name: "奶茶三兄弟",
-        sales: 10,
-        price: 9,
-        numb: 0
-      }, {
-        src: "../../images/good2.png",
-        name: "黄金珍珠奶茶",
-        sales: 10,
-        price: 7,
-        numb: 0
-      }, {
-        src: "../../images/good3.png",
-        name: "纯奶茶",
-        sales: 10,
-        price: 6,
-        numb: 0
-      }, {
-        src: "../../images/good4.png",
-        name: "超级柠檬养乐多",
-        sales: 10,
-        price: 11,
-        numb: 0
-      }]
-    }],
+    order: [],
+    menu: [],
     clientHeight: 0,
     currentPage: 0,
     selected: 0,
@@ -112,32 +34,8 @@ Page({
     collectCount: 0,
     commentChangeAll:false, //切换全部
     commentChangeOn:true, //切换点评
-    commentAll:[{            //全部评价
-      userImg:"../../images/avatar1.png",
-      userName:"TKQ51869965",
-      points:4.5,
-      time:"2018.03.26",
-      content: "不太烫！其他还行！"
-    }, {
-      userImg: "../../images/avatar2.png",
-      userName: "梦1997",
-      points: 5.0,
-      time: "2018.03.26",
-      content: "一如既往好喝！还有活动可以减！"
-      }, {
-        userImg: "../../images/avatar3.png",
-        userName: "fya",
-        points: 1.0,
-        time: "2018.03.25",
-        content: "水兑太多，喝了两口感觉在和矿泉水一样。"
-    }, {
-        userImg: "../../images/avatar4.png",
-      userName: "花轮120",
-      points: 5.0,
-      time: "2018.03.23",
-      content: "非常好喝，第二次购买了！便宜还量多！"
-    }], 
-    commentNum:[1893,1829,32],
+
+    commentAll:[], 
     commentGrate: [{            //点评
       userImg: "../../images/avatar7.png",
       userName: "VcT1113902",
@@ -163,13 +61,7 @@ Page({
       time: "2018.03.19",
       content: "挺好的，服务态度也好，奶茶我也喜欢喝，就是有时候会忘记让他帮我少放糖，自己口味原因。"
     }], //用户评价
-    restaurant:[{       //商店详情
-      address:"上海市奉贤区航南公路5639号奉贤宝龙广场B1",
-      tel: 15167688258,
-      summary:"产品质优价廉,请各位放心!小店所以的商品都是店主精挑细选出来的,质量严格把关",
-      tag: ["奶茶"],
-      discount: ["折扣商品3.3折起", "有机会领取商家代金券"],
-    }],
+
     scrollTop: {
       scroll_top: 0,
       goTop_show: false
@@ -367,6 +259,9 @@ Page({
       method: "POST",
       success: function (res) {
         console.log('商铺信息：',res.data);
+        let dis = res.data.result[0].discount;
+        let d = dis.split(',');
+        res.data.result[0].discount = d;
         that.setData({
           shop: res.data.result,
         })
@@ -403,20 +298,113 @@ Page({
       success: function (res) {
         console.log('商品信息：',res.data)
         let typeName = [];
+        let array = [];
         for(let good of res.data.result){
-          
-          typeName.push(good.type);
-          
+          good.numb = 0;
+          array.push(good.type);
         }
-        for (let i = 0; i < typeName.length; i++) {
-          console.log(i, ':', typeName[i]);
-          if(typeName.indexOf(this[i]) == -1){
-            
+        //typeName去重
+        let arrayi = [];
+        for (let i = 0; i < array.length; i++) {
+          // console.log('array:', i, ':', array[i]);
+          if (typeName.indexOf(array[i]) == -1){
+            typeName.push(array[i]);
           }
         }
+        let menu = [];
+        let json = {};
+        for (let i = 0; i < typeName.length; i++) {
+          // console.log('typeName:',i, ':', typeName[i]);
+          json = {
+            typeName: typeName[i]
+          };
+          menu.push(json);
+        }
+        let menuContent = [];
+        for (let good of res.data.result) {
+          for (let i = 0; i < menu.length; i++){
+            menu[i].menuContent = menuContent;
+            if (good.type == menu[i].typeName) {
+              console.log(i,' ','相等：',menu[i].typeName)
+              console.log('good：', good)
+              menu[i].menuContent.push(good);
+              console.log('menu[0]:' + menu[0].menuContent)
+              console.log('menu[1]:' + menu[1].menuContent)
+              break;
+            } else {
+              console.log('不相等:',i)
+            }
+          }
+        }
+        console.log('menu:', menu)
+        that.setData({
+          menu: menu
+        })
+
+      }
+    })
+
+    //获取评价
+    wx.request({
+      url: `${app.globalData.baseUrl}/api/getEvaluationWithUser`,
+      data: {shop_id: options.id},
+      method: "POST",
+      success: function (res) {
+        console.log('评价信息：', res.data.result);
+        let all = [];
+        let grate = [];
+        for (let comment of res.data.result){
+          comment.updated_at = that.timeFormat(comment.updated_at);
+          if(comment.grate == 0){
+            all.push(comment);
+          } else{
+            grate.push(comment)
+          }
+        }
+        that.setData({
+          evaluation: all,
+          commentAll: all,
+          commentGrate: grate
+        })
       }
     })
    
+  },
+  
+  //全部评价
+  tagAll:function(){
+    var that = this;
+    that.setData({
+      commentAll: that.data.evaluation
+    })
+  },
+
+  //好评
+  tagGrate: function () {
+    var that = this;
+    let eva = [];
+    for(let e of that.data.evaluation){
+      if(e.point >= 3.0){
+        eva.push(e);
+      }
+    }
+    that.setData({
+      commentAll: eva
+    })
+  },
+
+  //差评
+  tagBad: function () {
+    var that = this;
+    let eva = [];
+    for (let e of that.data.evaluation) {
+      if (e.point < 3.0) {
+        eva.push(e);
+      }
+    }
+    that.setData({
+      commentAll: eva
+    })
   },
   
 
@@ -467,5 +455,12 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  // 时间格式化
+  timeFormat(e) {
+    var time = e;
+    var d = new Date(time);
+    var times = d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getDate();
+    return times;
+  },
 })
