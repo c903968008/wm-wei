@@ -63,7 +63,7 @@ Page({
         } else {
           wx.showToast({
             title: '登录失败',
-            icon: none,
+            icon: 'none',
           })
         }
         

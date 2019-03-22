@@ -1,23 +1,23 @@
 <view class="content">
-  <navigator>
+  <!-- <navigator> -->
     <view class="head con"  bindtap='bindViewTap'>
       <view class='head-title title'>头像</view>
       <view class='head-right right'>
         <view class='head-me'>
-          <image src='{{userImg}}'></image>
+          <image src='{{userInfo.avatar}}'></image>
         </view>
         <view class='head-more more'>
-          <image src='{{avatarUrl}}' mode='aspectFit'></image> 
+          <image src='../../images/more.png' mode='aspectFit'></image> 
         </view>
       </view>
     </view>
-  </navigator>
+  <!-- </navigator> -->
   <navigator url='../userName/userName'>
     <view class="name con">
       <view class='name-title title'>用户名</view>
       <view class='name-right right'>
          <view class='name-title title'>
-           {{userName}}
+           {{userInfo.name}}
          </view>  
         <view class='name-more more'>
           <image src='../../images/more.png' mode='aspectFit'></image> 
@@ -25,12 +25,12 @@
       </view>
     </view>
   </navigator>
-  <navigator>
+  <navigator url='../password/password'>
     <view class="password con">
       <view class='password-title title'>账号密码</view>
       <view class='password-right right'>
          <view class='password-title title'>
-           {{userPassword}}
+           ******
          </view>  
         <view class='password-more more'>
           <image src='../../images/more.png' mode='aspectFit'></image> 

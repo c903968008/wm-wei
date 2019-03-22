@@ -180,9 +180,9 @@ Page({
    */
   onLoad: function (options) {
     var userInfo = wx.getStorageSync('userInfo')
-    console.log('userInfo：',userInfo)
+    // console.log('userInfo：', userInfo)
     app.globalData.userInfo = userInfo;
-    console.log('app.globalData.userInfo', app.globalData.userInfo);
+    // console.log('app.globalData.userInfo', app.globalData.userInfo);
     if(userInfo == ''){
       wx.navigateTo({
         url: '../login/login',

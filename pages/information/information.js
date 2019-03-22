@@ -1,17 +1,16 @@
 // pages/information/information.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userImg:"../../images/me.png",
-    userName:"cqj",
-    userPassword:"******",
-    avatarUrl:"../../images/more.png"
+
   },
   bindViewTap: function () {
     var that = this;
+    var userInfo = wx.getStorageSync('userInfo')
     wx.chooseImage({
       // 设置最多可以选择的图片张数，默认9,如果我们设置了多张,那么接收时//就不在是单个变量了,
       count: 1,
@@ -20,9 +19,32 @@ Page({
       success: function (res) {
         // 获取成功,将获取到的地址赋值给临时变量
         var tempFilePaths = res.tempFilePaths;
+        // console.log('userInfo前:', that.data.userInfo)
+        // console.log('tempFilePaths:', tempFilePaths);
+        that.data.userInfo.avatar = tempFilePaths[0];
+        app.globalData.userInfo.avatar = tempFilePaths[0];
+        let u = that.data.userInfo;
         that.setData({
-          //将临时变量赋值给已经在data中定义好的变量
-          avatarUrl: tempFilePaths
+          userInfo: u
+        })
+        wx.setStorage({
+          key: 'userInfo',
+          data: u
+        })
+        // console.log('userInfo后:', that.data.userInfo);
+        // console.log('userInfo后appss:', app.globalData.userInfo);
+        let param = {
+          id: userInfo.id,
+          avatar: tempFilePaths[0]
+        }
+        console.log('param:',param);
+        wx.request({
+          url: `${app.globalData.baseUrl}/api/editAvatar`,
+          data: param,
+          method: 'POST',
+          success(res) {
+            console.log('修改头像：', res);
+          }
         })
       },
       fail: function (res) {
@@ -37,7 +59,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var userInfo = wx.getStorageSync('userInfo')
+    this.setData({
+      userInfo: userInfo
+    })
   },
 
   /**
@@ -51,7 +76,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.onLoad();
   },
 
   /**

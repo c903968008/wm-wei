@@ -20,7 +20,8 @@
     "pages/location/location",
     "pages/search/search",
     "pages/userName/userName",
-    "pages/good/good"
+    "pages/good/good",
+    "pages/password/password"
     
     
   ],

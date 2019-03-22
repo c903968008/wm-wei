@@ -1,4 +1,5 @@
 // pages/collection/collection.js
+const app = getApp();
 Page({
 
   /**
@@ -37,8 +38,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
-  },
+    var that = this;
+    wx.request({
+      url: `${app.globalData.baseUrl}/api/getCollection`,
+      data: { user_id: app.globalData.userInfo.id},
+      method: 'POST',
+      success(res){
+        console.log('收藏商铺信息：',res.data.result);
+        that.setData({
+          restaurant: res.data.result
+        })
+      }
+    })
+  },  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

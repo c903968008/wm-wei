@@ -4,9 +4,9 @@
     <navigator url='../information/information'>
       <view class='user-nav'>
         <view class="userImg">
-          <image class='user-img' src='{{userImg}}'></image>
+          <image class='user-img' src='{{userInfo.avatar}}'></image>
         </view>
-        <view class="user-name">{{userName}}</view>
+        <view class="user-name">{{userInfo.name}}</view>
         <view class='user-info'>个人信息
           <image src='../../images/more1.png' mode='aspectFit'></image>
         </view>

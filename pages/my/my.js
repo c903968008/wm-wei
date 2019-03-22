@@ -1,12 +1,12 @@
 // pages/my/my.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userImg:"../../images/me.png",
-    userName:"cqj"
+    
   },
   toOrder:function(){
     wx.switchTab({
@@ -30,7 +30,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var userInfo = wx.getStorageSync('userInfo')
+    // console.log('userInfo:', app.globalData.userInfo);
+    this.setData({
+      userInfo: userInfo
+    })
+    // console.log('this.data.userInfo:', this.data.userInfo)
   },
 
   /**
@@ -44,7 +49,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.onLoad();
   },
 
   /**

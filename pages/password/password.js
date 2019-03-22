@@ -12,29 +12,24 @@ Page({
   input(e){
     // console.log('input携带数据为：', e.detail);
     this.setData({
-      name: e.detail.value
+      password: e.detail.value
     })
   },
 
   submit(){
     var that = this;
     var u = wx.getStorageSync('userInfo')
-    u.name = that.data.name
-    wx.setStorage({
-      key: 'userInfo',
-      data: u
-    })
     let param = {
       id: u.id,
-      name: that.data.name
+      password: that.data.password
     }
     console.log('param:', param);
     wx.request({
-      url: `${app.globalData.baseUrl}/api/editUserName`,
+      url: `${app.globalData.baseUrl}/api/editPassword`,
       data: param,
       method: 'POST',
       success(res) {
-        console.log('修改用户名：', res);
+        console.log('修改密码：', res.data);
         if(res.data.status == 1){
           wx.navigateBack({
             delta: 1

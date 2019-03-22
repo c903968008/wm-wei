@@ -1,44 +1,42 @@
 // pages/discount/discount.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    discount:[{
-      img:"../../images/logo1.png",
-      name:"奶茶博士",
-      time:"2018-04-04",
-      num:2,
-      total:20
-    }, {
-      img: "../../images/logo2.png",
-      name: "最高鸡密",
-      time: "2018-04-15",
-      num: 1,
-      total: 15
-      }, {
-        img: "../../images/logo3.png",
-        name: "快乐驿站",
-        time: "2018-04-06",
-        num: 3,
-        total: 10
-      },]
-  },
-  toMenu: function(){
-    wx.navigateTo({
-      url: '../menu/menu',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
+    discount:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    // console.log('app:',app.globalData.userInfo)
+    var that = this;
+    wx.request({
+      url: `${app.globalData.baseUrl}/api/getCouponByUserId`,
+      data: { user_id : app.globalData.userInfo.id},
+      method: 'POST',
+      success(res){
+        console.log('优惠券信息：',res.data);
+        for (let dis of res.data.result){
+          dis.exp = that.timeFormat(dis.exp);
+        }
+        that.setData({
+          discount: res.data.result
+        })
+      }
+    })
+  },
+
+  // 时间格式化
+  timeFormat(e) {
+    var time = e;
+    var d = new Date(time);
+    var times = d.getFullYear() + '.' + (d.getMonth() + 1) + '.' + d.getDate();
+    return times;
   },
 
   /**

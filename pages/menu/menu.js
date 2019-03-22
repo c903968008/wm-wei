@@ -270,7 +270,7 @@ Page({
 
     //判断是否收藏
     let param = {
-      user_id: app.globalData.userInfo[0].id,
+      user_id: app.globalData.userInfo.id,
       shop_id: options.id
     }
     // console.log('param:',param)
