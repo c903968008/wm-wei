@@ -36,31 +36,7 @@ Page({
     commentChangeOn:true, //切换点评
 
     commentAll:[], 
-    commentGrate: [{            //点评
-      userImg: "../../images/avatar7.png",
-      userName: "VcT1113902",
-      points: 4.5,
-      time: "2018.03.29",
-      content: "环境不错啦啦啦～，就是感觉速度慢一点，美团券价格还可以，在夏天，喝冰冰凉凉的奶茶味道感觉都棒棒哒 。就是天太热了，不太愿意出来买了，外卖的话起送价太高了。反正总体还不错，这么多家奶茶店里比较喜欢这一家啦。"
-    }, {
-      userImg: "../../images/avatar8.png",
-      userName: "faye小小",
-      points: 4.9,
-      time: "2018.03.28",
-      content: "奶盖红茶真的是我喝过最好喝的了 茶味浓 还有一个椰子西米露也巨好喝 奶味很足 加冰之后我觉得味道更好 不过大冬天还是喝热的比较好 毕竟身体比较重要 哈哈哈哈哈哈 价格液比较实惠  服务态度也很好 店员都超热情"
-    }, {
-      userImg: "../../images/avatar6.png",
-      userName: "MVQ7888362",
-      points: 4.3,
-      time: "2018.03.24",
-      content: "点了从来没喝过的金桔柠檬西米露，可能是因为西米露还在煮，所以等了比较长时间，但是味道还是挺好的"
-    }, {
-      userImg: "../../images/avatar5.png",
-      userName: "吃出一片天",
-      points: 4.7,
-      time: "2018.03.19",
-      content: "挺好的，服务态度也好，奶茶我也喜欢喝，就是有时候会忘记让他帮我少放糖，自己口味原因。"
-    }], //用户评价
+    commentGrate: [], 
 
     scrollTop: {
       scroll_top: 0,
@@ -68,6 +44,7 @@ Page({
     }  
   },
 
+  //去结算
   toPay: function(){
     wx.navigateTo({
       url: '../pay/pay',
@@ -118,6 +95,8 @@ Page({
     var info2 = this.data.goods;
     info2.numb++;
     this.data.orderCount = this.data.orderCount + 1;
+
+    console.log('加入购物车：', info)
     this.setData({
       cost: this.data.cost + this.data.menu[this.data.selected].menuContent[e.currentTarget.dataset.index].price,
       menu: info,
@@ -268,12 +247,24 @@ Page({
       }
     });
 
-    //判断是否收藏
+    
     let param = {
       user_id: app.globalData.userInfo.id,
       shop_id: options.id
     }
     // console.log('param:',param)
+
+    //添加足迹
+    wx.request({
+      url: `${app.globalData.baseUrl}/api/addFoot`,
+      data: param,
+      method: "POST",
+      success: function (res) {
+        console.log('足迹已更新：',res.data);
+      }
+    })
+
+    //判断是否收藏
     wx.request({
       url: `${app.globalData.baseUrl}/api/isCollect`,
       data: param,
@@ -325,18 +316,18 @@ Page({
           for (let i = 0; i < menu.length; i++){
             menu[i].menuContent = menuContent;
             if (good.type == menu[i].typeName) {
-              console.log(i,' ','相等：',menu[i].typeName)
-              console.log('good：', good)
+              // console.log(i,' ','相等：',menu[i].typeName)
+              // console.log('good：', good)
               menu[i].menuContent.push(good);
-              console.log('menu[0]:' + menu[0].menuContent)
-              console.log('menu[1]:' + menu[1].menuContent)
+              // console.log('menu[0]:' + menu[0].menuContent)
+              // console.log('menu[1]:' + menu[1].menuContent)
               break;
             } else {
-              console.log('不相等:',i)
+              // console.log('不相等:',i)
             }
           }
         }
-        console.log('menu:', menu)
+        // console.log('menu:', menu)
         that.setData({
           menu: menu
         })

@@ -2,26 +2,26 @@
 <block wx:for="{{restaurant}}" wx:key="">
 <view class="restaurants-list">
   <view class="restaurants-info-image">
-    <image src="{{item.src}}" mode='aspectFit' class="restaurants-image"/>
+    <image src="{{item.shop.logo}}" mode='aspectFit' class="restaurants-image"/>
   </view>
   <view class="restaurants-info">
     <view class="restaurants-info-name">
-      {{item.name}}
+      {{item.shop.name}}
     </view>
     <view class="restaurants-info-rating">
       <view class="restaurants-info-rating-stars">
-        评分：4.3
+        评分：{{item.shop.grade}}
       </view>
       <view class="restaurants-info-rating-sales">
-        月售 {{item.sales}}单
+        月售 {{item.shop.sale}}单
       </view>
     </view>
   </view>
-  <view class="restaurants-distribution">
+  <!-- <view class="restaurants-distribution">
     <view class="restaurants-distribution-distance">
       距离：{{item.distance}}m
     </view>
-  </view>
+  </view> -->
 </view>
 </block>
 </scroll-view>

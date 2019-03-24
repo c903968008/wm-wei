@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    login: '退出登录'
   },
   toOrder:function(){
     wx.switchTab({
@@ -26,15 +26,46 @@ Page({
     })
   },
 
+  //退出账号
+  signOut: function(){
+    if(this.data.login == '退出登录'){
+      wx.removeStorage({
+        key: 'userInfo',
+        success: function (res) {
+          console.log('退出登录：', res)
+          wx.switchTab({
+            url: '../home/home'
+          })
+        }
+      })
+    } else {
+      wx.redirectTo({
+        url: '../login/login',
+      })
+    }
+    
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var userInfo = wx.getStorageSync('userInfo')
-    // console.log('userInfo:', app.globalData.userInfo);
-    this.setData({
-      userInfo: userInfo
-    })
+    console.log('userInfo:', userInfo);
+    if(userInfo){
+      this.setData({
+        userInfo: userInfo
+      })
+    } else{
+      this.setData({
+        login: '登录',
+        userInfo: {
+          name: '请登录',
+          avatar: '../../images/logo.png'
+        }
+      })
+    }
+    
     // console.log('this.data.userInfo:', this.data.userInfo)
   },
 
